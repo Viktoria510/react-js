@@ -1,4 +1,4 @@
-function layout(props){
+function layout({title,description}){
     return(
         <div
 
@@ -8,8 +8,8 @@ function layout(props){
             padding:"20px",
             margin:"20px",
         }}>
-            <h2>Title:{props.title}</h2>
-            <h2>Description: {props.description}</h2>
+            <h2>Title:{title}</h2>
+            <h2>Description: {description}</h2>
         </div>
     );
 }
