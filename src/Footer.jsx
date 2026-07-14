@@ -2,7 +2,7 @@ function Footer(props) {
     return (
         <footer
             style={{
-                background: "#d791c7",
+                background: "#b9dea9",
                 color: "white",
                 textAlign: "center",
                 padding: "20px",

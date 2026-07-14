@@ -3,7 +3,7 @@ function Hero(props) {
     <section
       style={{
         padding: "30px",
-        background: "#f4f4f4",
+        background: "#d873b2",
       }}
     >
       <h2>{props.headline}</h2>

@@ -5,8 +5,8 @@ function Sidebar(props) {
         <aside
             style={{
                 padding: "20px",
-                background: "#dee3ad",
-                margin: "20px",
+                background: "#f1f9a5",
+                
             }}
         >
             <h3>{props.title}</h3>
