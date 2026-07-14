@@ -157,7 +157,7 @@ function App() {
   );
 }
 
-export default App;*/
+export default App;
 import React from 'react';
 import ProductList from './ProductList';
 
@@ -193,3 +193,77 @@ function App() {
 }
 
 export default App;
+import { useState } from "react";
+
+function App() {
+  const [name, setName] = useState("");
+
+  return (
+    <div>
+      <h1>Greeting App</h1>
+      <input
+        type="text"
+        placeholder="Enter your name"
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            setName(e.target.value);
+          }
+        }}
+      />
+      <h2>Hello {name}</h2>
+    </div>
+  );
+}
+
+export default App;
+import { useState } from "react";
+
+function App() {
+  const [text, setText] = useState("");
+
+  return (
+    <div>
+      <input
+        type="text"
+        onChange={(e) => setText(e.target.value)}
+      />
+      <h2>{text}</h2>
+      <p>Characters: {text.length}</p>
+    </div>
+  );
+}
+export default App;
+function App() {
+  const isLoggedIn = true;
+
+  if (isLoggedIn) {
+    return <h1>Welcome Back!</h1>;
+  }
+
+  return <h1>Please Login</h1>;
+}
+
+export default App;
+function App() {
+  const isLogin = false;
+
+  return (
+    <div>
+      {isLogin
+        ? <h1>Welcome Back</h1>
+        : <h1>Please Login</h1>
+      }
+    </div>
+  );
+}
+export default App;
+function App() {
+  const isAdmin = true;
+
+  return (
+    <div>
+      {isAdmin && <h2>Admin Panel</h2>}
+    </div>
+  );
+}
+export default App;*/
