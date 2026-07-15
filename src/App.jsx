@@ -1,269 +1,86 @@
-
-/*function App() {
-  const students = ["Rahim", "Karim", "Jamal"];
-
-  return (
-    <div>
-      {students.map((student, index) => (
-        <h2 key={index}>{student}</h2>
-      ))}
-    </div>
-  );
-}
-
-export default App;
-import React from "react";
+import { useState } from "react";
+import movies from "./movies";
+import MovieCard from "./MovieCard";
+import SearchBar from "./SearchBar";
 
 function App() {
-  const students = [
-    "Rahim",
-    "Karim",
-    "Sakib",
-    "Hasan",
-    "Nayeem",
-    "Rafi"
-  ];
+  const [search, setSearch] = useState("");
 
-  return (
-    <div>
-      {students.slice(0, 2).map((student, index) => (
-        <h2 key={index}>{student}</h2>
-      ))}
-    </div>
+  const filteredMovies = movies.filter((movie) =>
+    movie.title.toLowerCase().includes(search.toLowerCase())
   );
-}
 
-export default App;
-import React from "react";
-
-function App() {
-  const students = [
-    "Rahim",
-    "Karim",
-    "Sakib",
-    "Hasan",
-    "Nayeem",
-    "Rafi"
-  ];
-  const showStudents = ["Rahim", "Hasan"];
-
-  return (
-    <div>
-      {students
-        .filter((student) => showStudents.includes(student))
-        .map((student, index) => (
-          <h2 key={index}>{student}</h2>
-        ))}
-    </div>
-  );
-}
-
-export default App;
-import React from "react";
-
-function App() {
-  const students = [
-    "Rahim",
-    "Karim",
-    "Sakib",
-    "Hasan",
-    "Nayeem",
-    "Rafi"
-  ];
-  
-  return (
-    <div>
-      {students
-        .filter((student) => student !== "Rahim" && student !== "Hasan")
-        .map((student, index) => (
-          <h2 key={index}>{student}</h2>
-        ))}
-    </div>
-  );
-}
-
-export default App;
-
-import React from 'react';
-
-function App() {
-  const students = [
-    {
-      name: "Rahim",
-      age: 20,
-      city: "Dhaka"
+  const styles = {
+    appContainer: {
+      maxWidth: "1300px",
+      margin: "0 auto",
+      padding: "60px 20px",
+      fontFamily: "'Quicksand', 'Segoe UI', sans-serif",
+      background: "linear-gradient(135deg, #fff0f5 0%, #ffe4e1 100%)",
+      minHeight: "100vh",
+      boxSizing: "border-box"
     },
-    {
-      name: "Karim",
-      age: 22,
-      city: "Chittagong"
+    appHeader: {
+      textAlign: "center",
+      marginBottom: "50px"
     },
-    {
-      name: "Jamal",
-      age: 21,
-      city: "Khulna"
+    title: {
+      color: "#c71585",
+      fontSize: "3rem",
+      fontWeight: "800",
+      marginBottom: "10px",
+      letterSpacing: "-1px"
+    },
+    subtitle: {
+      color: "#db7093",
+      fontSize: "1.1rem",
+      marginBottom: "30px",
+      fontWeight: "500"
+    },
+    moviesRow: {
+      display: "flex",
+      flexDirection: "row",
+      gap: "25px",
+      overflowX: "auto",
+      padding: "20px 5px 30px 5px",
+      scrollbarWidth: "none", 
+      WebkitOverflowScrolling: "touch" 
+    },
+    noResults: {
+      width: "100%",
+      textAlign: "center",
+      fontSize: "1.3rem",
+      color: "#db7093",
+      fontWeight: "600",
+      marginTop: "60px"
     }
-  ];
+  };
 
   return (
-    <div>
-      {students.map((student, index) => (
-        <div key={index}>
-          <h2>{student.name}</h2>
-          <p>Age: {student.age}</p>
-          <p>City: {student.city}</p>
-        </div>
-      ))}
-    </div>
-  );
-}
-
-export default App;
-import StudentList from "./StudentList";
-
-function App() {
-  const students = ["Rahim", "Karim", "Jamal"];
-
-  return (
-    <StudentList students={students} />
-  );
-}
-
-export default App;
-
- import StudentList from "./StudentList";
-
-function App() {
-  const students = [
-    {
-      name: "Rahim",
-      age: 20,
-      city: "Dhaka"
-    },
-    {
-      name: "Karim",
-      age: 22,
-      city: "Chittagong"
-    },
-    {
-      name: "Jamal",
-      age: 21,
-      city: "Khulna"
-    }
-  ];
-
-  return (
-    <StudentList students={students} />
-  );
-}
-
-export default App;
-import React from 'react';
-import ProductList from './ProductList';
-
-function App() {
-  return (
-    <div style={{ backgroundColor: '#fff0f5', minHeight: '100vh', fontFamily: 'Arial, sans-serif' }}>
-    
-      <header style={{ 
-        display: 'flex', 
-        justifyContent: 'space-between', 
-        alignItems: 'center', 
-        padding: '15px 30px', 
-        borderBottom: '2px solid #ffb6c1',
-        backgroundColor: '#ffe4e1'
-      }}>
-        <div style={{ color: '#db7093', fontWeight: 'bold', fontSize: '20px' }}>
-          MyShop
-        </div>
-        <nav style={{ display: 'flex', gap: '20px' }}>
-          <span style={{ color: '#c71585', cursor: 'pointer' }}>Home</span>
-          <span style={{ color: '#c71585', cursor: 'pointer' }}>Products</span>
-          <span style={{ color: '#c71585', cursor: 'pointer' }}>Contact</span>
-        </nav>
+    <div style={styles.appContainer}>
+      <header style={styles.appHeader}>
+        <h1 style={styles.title}>Victoria Movie</h1>
+        <p style={styles.subtitle}>Movie collection</p>
+        <SearchBar search={search} setSearch={setSearch} />
       </header>
 
-      <div style={{ padding: '30px' }}>
-        <h1 style={{ color: '#db7093', marginBottom: '30px', textAlign: 'center' }}>Product List</h1>
-        <ProductList />
-      </div>
+      <main style={styles.moviesRow} className="hide-scrollbar">
+        {filteredMovies.length > 0 ? (
+          filteredMovies.map((movie) => (
+            <MovieCard key={movie.id} movie={movie} />
+          ))
+        ) : (
+          <p style={styles.noResults}>No matches found in this pink universe</p>
+        )}
+      </main>
 
+      <style>{`
+        .hide-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+      `}</style>
     </div>
   );
 }
 
 export default App;
-import { useState } from "react";
-
-function App() {
-  const [name, setName] = useState("");
-
-  return (
-    <div>
-      <h1>Greeting App</h1>
-      <input
-        type="text"
-        placeholder="Enter your name"
-        onKeyDown={(e) => {
-          if (e.key === "Enter") {
-            setName(e.target.value);
-          }
-        }}
-      />
-      <h2>Hello {name}</h2>
-    </div>
-  );
-}
-
-export default App;
-import { useState } from "react";
-
-function App() {
-  const [text, setText] = useState("");
-
-  return (
-    <div>
-      <input
-        type="text"
-        onChange={(e) => setText(e.target.value)}
-      />
-      <h2>{text}</h2>
-      <p>Characters: {text.length}</p>
-    </div>
-  );
-}
-export default App;
-function App() {
-  const isLoggedIn = true;
-
-  if (isLoggedIn) {
-    return <h1>Welcome Back!</h1>;
-  }
-
-  return <h1>Please Login</h1>;
-}
-
-export default App;
-function App() {
-  const isLogin = false;
-
-  return (
-    <div>
-      {isLogin
-        ? <h1>Welcome Back</h1>
-        : <h1>Please Login</h1>
-      }
-    </div>
-  );
-}
-export default App;
-function App() {
-  const isAdmin = true;
-
-  return (
-    <div>
-      {isAdmin && <h2>Admin Panel</h2>}
-    </div>
-  );
-}
-export default App;*/
